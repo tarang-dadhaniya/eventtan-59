@@ -1447,4 +1447,25 @@ export class EventSetupComponent implements OnInit {
       console.log("Form submitted:", this.formData);
     }
   }
+
+  onBack() {
+    if (this.currentTab === "features") {
+      this.currentTab = "details";
+    } else if (this.currentTab === "content") {
+      this.currentTab = "features";
+    }
+  }
+
+  toggleFeature(featureId: string) {
+    const index = this.activeFeatures.indexOf(featureId);
+    if (index > -1) {
+      this.activeFeatures.splice(index, 1);
+    } else {
+      this.activeFeatures.push(featureId);
+    }
+  }
+
+  isFeatureActive(featureId: string): boolean {
+    return this.activeFeatures.includes(featureId);
+  }
 }
