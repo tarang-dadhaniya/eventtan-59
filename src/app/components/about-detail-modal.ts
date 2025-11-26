@@ -13,7 +13,6 @@ import { FormsModule } from "@angular/forms";
   selector: "app-about-detail-modal",
   standalone: true,
   imports: [CommonModule, FormsModule],
-  changeDetection: "Default",
   template: `
     <!-- Modal Backdrop -->
     <div
