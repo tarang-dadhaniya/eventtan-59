@@ -2193,6 +2193,7 @@ export class EventSetupComponent implements OnInit {
 
   isScheduleModalOpen = false;
   isExhibitorModalOpen = false;
+  editAboutContent = false;
   eventId: string = "";
   schedules: Schedule[] = [];
   exhibitors: Exhibitor[] = [];
