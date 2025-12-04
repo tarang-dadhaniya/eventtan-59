@@ -2,6 +2,11 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
+interface FeaturedImage {
+  file: File;
+  preview: string;
+}
+
 @Component({
   selector: "app-add-information-modal",
   standalone: true,
@@ -90,35 +95,39 @@ import { FormsModule } from "@angular/forms";
                 </div>
                 <button
                   type="button"
-                  class="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-[#009FD8] flex items-center justify-center shadow-md hover:bg-[#0385b5] transition-colors"
+                  class="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#009FD8] flex items-center justify-center shadow-md hover:bg-[#0385b5] transition-colors"
                   (click)="profileImageInput.click()"
                 >
                   <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M9.4296 10.537C9.3176 10.537 9.2059 10.494 9.1203 10.409C8.9495 10.238 8.9495 9.961 9.1203 9.790L15.9571 2.953C16.1278 2.782 16.4049 2.782 16.5758 2.953C16.7466 3.124 16.7466 3.401 16.5758 3.572L9.7389 10.409C9.6536 10.494 9.5416 10.537 9.4296 10.537Z"
+                      d="M2.42963 9.53695C2.31763 9.53695 2.20585 9.4943 2.12032 9.40877C1.94948 9.23792 1.94948 8.96098 2.12032 8.79014L8.95713 1.95333C9.12776 1.78248 9.40491 1.78248 9.57576 1.95333C9.7466 2.12417 9.7466 2.40111 9.57576 2.57195L2.73895 9.40877C2.65363 9.49408 2.54163 9.53695 2.42963 9.53695Z"
                       fill="white"
-                      transform="scale(0.5) translate(-10, -2)"
                     />
                     <path
-                      d="M8.7543 13.688C8.7239 13.688 8.6931 13.684 8.6622 13.678C8.426 13.627 8.2755 13.394 8.3262 13.158L9.0022 10.008C9.0529 9.771 9.2866 9.621 9.5217 9.672C9.758 9.722 9.9085 9.955 9.8577 10.191L9.1818 13.342C9.1378 13.547 8.9562 13.688 8.7543 13.688Z"
+                      d="M1.75434 12.6874C1.72394 12.6874 1.69309 12.6841 1.66225 12.6775C1.426 12.6268 1.2755 12.3942 1.32625 12.158L2.00219 9.00733C2.05294 8.77108 2.28656 8.62102 2.52172 8.67133C2.75797 8.72208 2.90847 8.95462 2.85772 9.19087L2.18178 12.3415C2.13781 12.5469 1.95625 12.6874 1.75434 12.6874Z"
                       fill="white"
-                      transform="scale(0.5) translate(-10, -2)"
                     />
                     <path
-                      d="M11.9042 13.012C11.7922 13.012 11.6805 12.969 11.5949 12.883C11.4241 12.713 11.4241 12.436 11.5949 12.265L18.4317 5.428C18.6024 5.257 18.8795 5.257 19.0504 5.428C19.2212 5.599 19.2212 5.876 19.0504 6.047L12.2138 12.883C12.1282 12.969 12.0162 13.012 11.9042 13.012Z"
+                      d="M4.90424 12.0113C4.79224 12.0113 4.68046 11.9687 4.59493 11.8832C4.42409 11.7123 4.42409 11.4354 4.59493 11.2645L11.4317 4.42794C11.6024 4.25709 11.8795 4.25709 12.0504 4.42794C12.2212 4.59878 12.2212 4.87572 12.0504 5.04656L5.21377 11.8832C5.12824 11.9687 5.01624 12.0113 4.90424 12.0113Z"
                       fill="white"
-                      transform="scale(0.5) translate(-10, -2)"
                     />
                     <path
-                      d="M8.7536 13.687C8.5517 13.687 8.3704 13.547 8.3262 13.342C8.2757 13.105 8.4259 12.873 8.6622 12.822L11.8128 12.146C12.0493 12.096 12.2818 12.246 12.3324 12.482C12.3829 12.718 12.2326 12.951 11.9964 13.002L8.8457 13.678C8.8149 13.684 8.784 13.687 8.7536 13.687Z"
+                      d="M1.75362 12.6877C1.55172 12.6877 1.37037 12.5472 1.32618 12.3418C1.27565 12.1056 1.42593 11.873 1.66218 11.8223L4.81284 11.1464C5.04931 11.0963 5.28184 11.2463 5.33237 11.4824C5.3829 11.7186 5.23262 11.9511 4.99637 12.0019L1.84572 12.6778C1.81487 12.6846 1.78403 12.6877 1.75362 12.6877Z"
                       fill="white"
-                      transform="scale(0.5) translate(-10, -2)"
+                    />
+                    <path
+                      d="M10.504 6.41216C10.392 6.41216 10.28 6.36951 10.1946 6.28398L7.71993 3.80926C7.54909 3.63841 7.54909 3.36148 7.71993 3.19063C7.89055 3.01979 8.16793 3.01979 8.33856 3.19063L10.8133 5.66535C10.9841 5.8362 10.9841 6.11313 10.8133 6.28398C10.728 6.36951 10.616 6.41216 10.504 6.41216Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M11.7407 5.17502C11.6287 5.17502 11.5167 5.13237 11.4312 5.04684C11.2604 4.87599 11.2604 4.59905 11.4312 4.42799C11.6747 4.18452 11.8088 3.85487 11.8088 3.50005C11.8088 3.14524 11.6747 2.81559 11.4312 2.57212C11.1875 2.32843 10.8579 2.19434 10.503 2.19434C10.1482 2.19434 9.81857 2.32843 9.5751 2.57212C9.40448 2.74296 9.12754 2.74318 8.95626 2.57212C8.78541 2.40127 8.78541 2.12434 8.95626 1.95327C9.36488 1.54443 9.91416 1.31934 10.503 1.31934C11.0917 1.31934 11.6412 1.54443 12.0498 1.95327C12.4587 2.3619 12.6838 2.91118 12.6838 3.50005C12.6838 4.08893 12.4587 4.63821 12.0498 5.04684C11.9647 5.13215 11.8527 5.17502 11.7407 5.17502Z"
+                      fill="white"
                     />
                   </svg>
                 </button>
@@ -611,29 +620,77 @@ import { FormsModule } from "@angular/forms";
 
             <!-- Featured Images -->
             <div>
-              <label class="block text-base font-medium text-[#212529] mb-2"
+              <label class="block text-base font-medium text-[#212529] mb-[7px]"
                 >Featured Images</label
               >
               <div
-                class="border border-dashed border-[#B9BBBC] rounded h-[120px] flex flex-col items-center justify-center cursor-pointer hover:border-[#009FD8] transition-colors"
-                (click)="featuredImagesInput.click()"
+                class="border border-dashed border-[#B9BBBC] rounded min-h-[120px] p-5 relative"
               >
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mb-2"
+                <div
+                  *ngIf="featuredImages.length === 0"
+                  class="flex flex-col items-center justify-center h-full cursor-pointer"
+                  (click)="featuredImagesInput.click()"
                 >
-                  <path
-                    d="M25.0037 27.6419H19.8316H18.4389H18.1381V20.7045H20.407C20.9824 20.7045 21.3224 20.0506 20.9824 19.5798L16.5689 13.4727C16.2877 13.0804 15.7058 13.0804 15.4246 13.4727L11.011 19.5798C10.671 20.0506 11.0045 20.7045 11.5864 20.7045H13.8553V27.6419H13.5546H12.1618H6.16592C2.73314 27.4523 0 24.2418 0 20.7633C0 18.3636 1.30119 16.2713 3.23008 15.1401C3.05354 14.6628 2.96199 14.1528 2.96199 13.6166C2.96199 11.1646 4.9432 9.18341 7.39518 9.18341C7.92481 9.18341 8.43482 9.27495 8.91214 9.45149C10.331 6.44373 13.3911 4.35791 16.9481 4.35791C21.5513 4.36445 25.3437 7.88876 25.7752 12.3808C29.3126 12.9889 32 16.2647 32 19.9721C32 23.9345 28.9138 27.3673 25.0037 27.6419Z"
-                    fill="#878A99"
-                  />
-                </svg>
-                <p class="text-base font-medium text-[#212529]">
-                  Drop Images here or click to upload.
-                </p>
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="mb-2"
+                  >
+                    <path
+                      d="M25.0037 27.6419H19.8316H18.4389H18.1381V20.7045H20.407C20.9824 20.7045 21.3224 20.0506 20.9824 19.5798L16.5689 13.4727C16.2877 13.0804 15.7058 13.0804 15.4246 13.4727L11.011 19.5798C10.671 20.0506 11.0045 20.7045 11.5864 20.7045H13.8553V27.6419H13.5546H12.1618H6.16592C2.73314 27.4523 0 24.2418 0 20.7633C0 18.3636 1.30119 16.2713 3.23008 15.1401C3.05354 14.6628 2.96199 14.1528 2.96199 13.6166C2.96199 11.1646 4.9432 9.18341 7.39518 9.18341C7.92481 9.18341 8.43482 9.27495 8.91214 9.45149C10.331 6.44373 13.3911 4.35791 16.9481 4.35791C21.5513 4.36445 25.3437 7.88876 25.7752 12.3808C29.3126 12.9889 32 16.2647 32 19.9721C32 23.9345 28.9138 27.3673 25.0037 27.6419Z"
+                      fill="#878A99"
+                    />
+                  </svg>
+                  <p class="text-base font-medium text-[#212529]">
+                    Drop Images here or click to upload.
+                  </p>
+                </div>
+
+                <div
+                  *ngIf="featuredImages.length > 0"
+                  class="flex flex-wrap gap-3"
+                >
+                  <div
+                    *ngFor="let image of featuredImages; let i = index"
+                    class="relative w-20 h-20"
+                  >
+                    <img
+                      [src]="image.preview"
+                      [alt]="'Featured image ' + (i + 1)"
+                      class="w-20 h-20 rounded object-cover border border-[#E9EBEC]"
+                    />
+                    <button
+                      type="button"
+                      (click)="removeFeaturedImage(i)"
+                      class="absolute -top-[9px] -right-[9px] w-[18px] h-[18px] flex items-center justify-center"
+                      aria-label="Remove image"
+                    >
+                      <svg
+                        width="26"
+                        height="26"
+                        viewBox="0 0 26 26"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.07))"
+                      >
+                        <circle cx="13" cy="13" r="9" fill="white" />
+                        <circle cx="13" cy="13" r="8.5" stroke="#878A99" />
+                        <path
+                          d="M9.31048 16C9.23145 16 9.15241 15.9699 9.09236 15.9095C8.97182 15.7889 8.97182 15.5935 9.09236 15.4729L15.4749 9.09042C15.5954 8.96987 15.7909 8.96987 15.9114 9.09042C16.032 9.21096 16.032 9.4064 15.9114 9.52702L9.52898 15.9095C9.46848 15.9696 9.38945 16 9.31048 16Z"
+                          fill="#686868"
+                        />
+                        <path
+                          d="M15.6934 16C15.6143 16 15.5354 15.9699 15.4753 15.9095L9.09236 9.52702C8.97182 9.4064 8.97182 9.21096 9.09236 9.09042C9.21291 8.96987 9.40835 8.96987 9.52898 9.09042L15.9114 15.4729C16.032 15.5935 16.032 15.7889 15.9114 15.9095C15.8509 15.9696 15.772 16 15.6934 16Z"
+                          fill="#686868"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
                 <input
                   #featuredImagesInput
                   type="file"
@@ -642,16 +699,6 @@ import { FormsModule } from "@angular/forms";
                   class="hidden"
                   (change)="onFeaturedImagesSelected($event)"
                 />
-              </div>
-              <div
-                *ngIf="formData.featuredImages.length > 0"
-                class="mt-2 flex flex-wrap gap-2"
-              >
-                <span
-                  *ngFor="let img of formData.featuredImages"
-                  class="text-sm text-[#212529] bg-gray-100 px-2 py-1 rounded"
-                  >{{ img }}</span
-                >
               </div>
             </div>
           </div>
@@ -734,9 +781,9 @@ export class AddInformationModalComponent {
         url: data.url || "",
         description: data.description || "",
         profileImage: data.profileImage || "",
-        featuredImages: data.featuredImages || [],
       };
       this.profileImagePreview = data.profileImage || "";
+      this.featuredImages = data.featuredImages || [];
     }
   }
   @Output() close = new EventEmitter<void>();
@@ -749,10 +796,10 @@ export class AddInformationModalComponent {
     url: "",
     description: "",
     profileImage: "",
-    featuredImages: [] as string[],
   };
 
   profileImagePreview: string = "";
+  featuredImages: FeaturedImage[] = [];
 
   onClose() {
     this.resetForm();
@@ -761,7 +808,11 @@ export class AddInformationModalComponent {
 
   onSave() {
     if (this.validateForm()) {
-      this.save.emit(this.formData);
+      const saveData = {
+        ...this.formData,
+        featuredImages: this.featuredImages,
+      };
+      this.save.emit(saveData);
       this.resetForm();
     }
   }
@@ -786,12 +837,22 @@ export class AddInformationModalComponent {
   onFeaturedImagesSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      const fileNames = Array.from(input.files).map((file) => file.name);
-      this.formData.featuredImages = [
-        ...this.formData.featuredImages,
-        ...fileNames,
-      ];
+      Array.from(input.files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.featuredImages.push({
+            file: file,
+            preview: e.target.result,
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+      input.value = "";
     }
+  }
+
+  removeFeaturedImage(index: number) {
+    this.featuredImages.splice(index, 1);
   }
 
   validateForm(): boolean {
@@ -818,8 +879,8 @@ export class AddInformationModalComponent {
       url: "",
       description: "",
       profileImage: "",
-      featuredImages: [],
     };
     this.profileImagePreview = "";
+    this.featuredImages = [];
   }
 }
