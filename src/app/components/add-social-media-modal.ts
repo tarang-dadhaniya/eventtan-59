@@ -197,7 +197,7 @@ import { FormsModule } from "@angular/forms";
                 URL
               </label>
 
-              <div class="space-y-[30px]">
+              <div [class.space-y-[30px]]="!editMode" [class.mt-[31px]]="editMode">
                 <!-- Blog/Rss URL -->
                 <div *ngIf="formData.socialMedia.blogRss" class="relative">
                   <div
@@ -236,7 +236,7 @@ import { FormsModule } from "@angular/forms";
                     [(ngModel)]="formData.urls.blogRss"
                     name="blogRssUrl"
                     placeholder="Enter Blog/Rss URL"
-                    class="w-full h-[50px] pl-[70px] pr-5 border-2 border-[#E9EBEC] rounded placeholder:text-[#C2C3CB] text-base focus:outline-none focus:border-[#009FD8] transition-colors"
+                    class="w-full h-[50px] pl-[70px] pr-5 border-2 border-[#E9EBEC] rounded placeholder:text-[#C2C3CB] text-[#434349] text-base focus:outline-none focus:border-[#009FD8] transition-colors"
                   />
                 </div>
 
@@ -270,7 +270,7 @@ import { FormsModule } from "@angular/forms";
                     [(ngModel)]="formData.urls.facebook"
                     name="facebookUrl"
                     placeholder="Enter Facebook URL"
-                    class="w-full h-[50px] pl-[70px] pr-5 border-2 border-[#E9EBEC] rounded placeholder:text-[#C2C3CB] text-base focus:outline-none focus:border-[#009FD8] transition-colors"
+                    class="w-full h-[50px] pl-[70px] pr-5 border-2 border-[#E9EBEC] rounded placeholder:text-[#C2C3CB] text-[#434349] text-base focus:outline-none focus:border-[#009FD8] transition-colors"
                   />
                 </div>
               </div>
